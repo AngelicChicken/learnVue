@@ -1,5 +1,5 @@
 <script setup>
-  import {ref, onMounted} from 'vue'
+  import {ref, onMounted, watch} from 'vue'
   import axios from 'axios';
 
   const todoData = ref([])
@@ -19,7 +19,7 @@
     let message =  `${newTodo.value}`
     axios
       .post(`${link}activity`, {message})
-      .then(fetchData())
+      .then(() => fetchData())
   }
 
   async function editData(){
@@ -27,18 +27,34 @@
     let id = `${editID.value}`
     axios
       .put(`${link}activity/${id}`, {message})
-      .then(fetchData())
+      .then(() => fetchData())
+  }
+
+  async function deleteData(id){
+    axios
+      .delete(`${link}activity/${id}`)
+      .then(() => fetchData())
   }
 
   onMounted(()=>{
     fetchData()
   })
+
+  watch(todoData.value ,fetchData)
 </script>
 
 <template>
-  <ul>
-    <li v-for="item of todoData">{{ item }}</li>
-  </ul>
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">message</th>
+    </tr>
+    <tr v-for="item of todoData">
+      <th>{{ item.id }}</th>
+      <th>{{ item.message }}</th>
+      <button @click="deleteData(item.id)">delete</button>
+    </tr>
+  </thead>
   <form @submit.prevent="sendData">
     <input v-model="newTodo" required placeholder="message">
     <button>add to do</button>
