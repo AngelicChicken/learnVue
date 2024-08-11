@@ -4,22 +4,14 @@
   import axios from 'axios';
 
   const router = useRouter()
-  const todoData = ref([])
-  const newTodo = ref('')
   const link = 'https://66aba96d636a4840d7cb82a3.mockapi.io/'
 
+  const todoData = ref([])
   async function fetchData(){
     todoData.value = null
     axios 
       .get(`${link}activity`)
       .then((response)=> {todoData.value = response.data})
-  }
-
-  async function sendData(){
-    let message =  `${newTodo.value}`
-    axios
-      .post(`${link}activity`, {message})
-      .then(() => fetchData())
   }
 
   async function deleteData(id){
@@ -35,6 +27,12 @@
   watch(todoData.value ,fetchData)
 </script>
 <template>
+  <button
+  @click="router.push({name: 'Create'})"
+  id="indexAddButton"
+  class="button is-warning">
+  Add
+  </button>
   <table>
     <thead>
     <tr>
@@ -62,19 +60,4 @@
     </tr>
     </thead>
   </table>
-  <!-- <form @submit.prevent="sendData">
-    <input v-model="newTodo" required placeholder="message">
-    <button>add to do</button>
-  </form> -->
 </template>
-<style>
-  body{
-    text-align: center;
-  }
-  table {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  border: 2px solid white;
-  }
-</style>

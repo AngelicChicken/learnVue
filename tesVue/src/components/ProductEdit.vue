@@ -2,6 +2,7 @@
   import {ref, onMounted, watch} from 'vue'
   import { useRouter, useRoute } from 'vue-router'
   import axios from 'axios';
+  
   const router = useRouter();
   const route = useRoute();
   const link = 'https://66aba96d636a4840d7cb82a3.mockapi.io/'
@@ -18,8 +19,10 @@
 </script>
 <template>
   <form @submit.prevent="editData">
-    <a>id: {{ id }}</a>
+    <a class="idEdit">ID: {{ id }}</a>
+    <br>
     <input v-model="editMessage" required placeholder="message">
-    <button>edit</button>
+    <br>
+    <button class="button is-warning">Edit</button>
   </form>
 </template>

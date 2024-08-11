@@ -1,7 +1,56 @@
 @import "bulma/css/bulma.css";
 
 $primary-color: #0f4254;
+$button-color: rgb(255, 208, 0);
 
 body{
     background-color: $primary-color;
+}
+
+input{
+    background-color: $primary-color;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px 50em 10px 0px;
+    color: white;
+}
+
+input::placeholder{
+    color: white;
+    font-size: 1.6rem;
+}
+
+th, tr{
+    border: 2px solid white;
+}
+
+.idEdit{
+    color: white;
+    font-size: 1.6rem;
+}
+
+#indexAddButton{
+    margin-left: 10%;
+}
+
+button{
+    margin: 10px;
+    padding: 5px 10px;
+    font-size: 1.6rem;
+    background-color: $button-color;
+    color: black;
+    border-radius: 10px;
+    text-align: start;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    border: 2px solid white;
+    text-align: center;
+}
+
+form{
+    text-align: center;
 }
