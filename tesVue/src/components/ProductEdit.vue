@@ -20,9 +20,7 @@
 <template>
   <form @submit.prevent="editData">
     <a class="idEdit">ID: {{ id }}</a>
-    <br>
     <input v-model="editMessage" required placeholder="message">
-    <br>
     <button class="button is-warning">Edit</button>
   </form>
 </template>

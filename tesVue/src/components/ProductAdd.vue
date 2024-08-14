@@ -18,7 +18,6 @@
 <template>
   <form @submit.prevent="sendData">
     <input v-model="newTodo" required placeholder="message">
-    <br>
     <button class="button is-warning">Add</button>
   </form>
 </template>

@@ -34,7 +34,6 @@
   Add
   </button>
   <table>
-    <thead>
     <tr>
       <th scope="col">id</th>
       <th scope="col">message</th>
@@ -58,6 +57,5 @@
         </button>
       </th>
     </tr>
-    </thead>
   </table>
 </template>
