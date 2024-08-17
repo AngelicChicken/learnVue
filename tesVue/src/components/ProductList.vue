@@ -1,31 +1,3 @@
-<script setup>
-  import {ref, onMounted, watch} from 'vue'
-  import {useRouter} from 'vue-router'
-  import axios from 'axios';
-
-  const router = useRouter()
-  const link = 'https://66aba96d636a4840d7cb82a3.mockapi.io/'
-
-  const todoData = ref([])
-  async function fetchData(){
-    todoData.value = null
-    axios 
-      .get(`${link}activity`)
-      .then((response)=> {todoData.value = response.data})
-  }
-
-  async function deleteData(id){
-    axios
-      .delete(`${link}activity/${id}`)
-      .then(() => fetchData())
-  }
-
-  onMounted(()=>{
-    fetchData()
-  })
-
-  watch(todoData.value ,fetchData)
-</script>
 <template>
   <button
   @click="router.push({name: 'Create'})"
@@ -33,7 +5,8 @@
   class="button is-warning">
   Add
   </button>
-  <table>
+  <Table :fields="fields" :datas="todoData"></Table>
+  <!-- <table>
     <tr>
       <th scope="col">id</th>
       <th scope="col">message</th>
@@ -57,5 +30,73 @@
         </button>
       </th>
     </tr>
-  </table>
+  </table> -->
 </template>
+<script setup>
+  import {ref, onMounted, watch} from 'vue'
+  import {useRouter} from 'vue-router'
+  import axios from 'axios';
+  import Table from './tableComponent.vue'
+
+  const router = useRouter()
+  const link = 'https://66aba96d636a4840d7cb82a3.mockapi.io/'
+
+  const todoData = ref([])
+  async function fetchData(){
+    todoData.value = null
+    axios 
+      .get(`${link}activity`)
+      .then((response)=> {todoData.value = response.data})
+  }
+  const fields = ['id', 'message']
+
+  async function deleteData(id){
+    axios
+      .delete(`${link}activity/${id}`)
+      .then(() => fetchData())
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  onMounted(()=>{
+    fetchData()
+  })
+
+  watch(todoData.value ,fetchData)
+</script>

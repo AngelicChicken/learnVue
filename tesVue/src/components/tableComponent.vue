@@ -1,11 +1,31 @@
-<script setup>
-defineProps(['columns', 'heads', 'items'])
-</script>
 <template>
-    <tr>
-        <th scope="col" v-for="head in heads">{{ head }}</th>
-    </tr>
-    <tr v-for="column in columns">
-        <th v-for="item in items">{{ item.id }}</th>
-    </tr>
+    <table>
+    <thead>
+        <tr>
+            <th v-for="field in fields" :key="field">{{ field }}</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="data in datas">
+            <td v-for="field in fields">{{ data[field] }}</td>
+            <!-- <td>
+                <Button :size="medium" :color="color1" :type="edit">Edit</Button>
+            </td> -->
+        </tr>
+    </tbody>
+    </table>
 </template>
+<script setup>
+    import Button from './buttonComponent.vue'
+    const props = defineProps({
+        datas:{
+            type: Array,
+            required: true
+        },
+        fields:{
+            type: Array,
+            required: true
+        }
+    })
+</script>
