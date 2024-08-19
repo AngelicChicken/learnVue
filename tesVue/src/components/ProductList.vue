@@ -1,42 +1,18 @@
 <template>
-  <button
+  <Button
   @click="router.push({name: 'Create'})"
-  id="indexAddButton"
-  class="button is-warning">
-  Add
-  </button>
-  <Table :fields="fields" :datas="todoData"></Table>
-  <!-- <table>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">message</th>
-      <th scope="col">action</th>
-    </tr>
-    <tr v-for="item of todoData">
-      <th>{{ item.id }}</th>
-      <th>{{ item.message }}</th>
-      <th>
-        <button
-          @click="router.push({name: 'Edit', params: {id: item.id}})"
-          class="button is-warning is-small"
-          style="margin: 2px;">
-          Edit
-        </button>
-        <button
-            class="button is-danger is-small"
-            style="margin: 2px;"
-            @click="deleteData(item.id)">
-            Delete
-        </button>
-      </th>
-    </tr>
-  </table> -->
+  size="small" color="color1"
+  >Add
+  </Button>
+  <Table :fields="fields" :datas="todoData" :refetch="fetchData"></Table>
 </template>
 <script setup>
   import {ref, onMounted, watch} from 'vue'
   import {useRouter} from 'vue-router'
   import axios from 'axios';
+
   import Table from './tableComponent.vue'
+  import Button from './buttonComponent.vue'
 
   const router = useRouter()
   const link = 'https://66aba96d636a4840d7cb82a3.mockapi.io/'
@@ -49,50 +25,6 @@
       .then((response)=> {todoData.value = response.data})
   }
   const fields = ['id', 'message']
-
-  async function deleteData(id){
-    axios
-      .delete(`${link}activity/${id}`)
-      .then(() => fetchData())
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
   onMounted(()=>{
     fetchData()

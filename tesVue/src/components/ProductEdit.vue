@@ -1,7 +1,16 @@
+<template>
+  <form @submit.prevent="editData">
+    <a class="idEdit">ID: {{ id }}</a>
+    <input v-model="editMessage" required placeholder="message">
+    <Button size="small" color="color1">Edit</Button>
+  </form>
+</template>
 <script setup>
   import {ref, onMounted, watch} from 'vue'
   import { useRouter, useRoute } from 'vue-router'
   import axios from 'axios';
+
+  import Button from './buttonComponent.vue'
   
   const router = useRouter();
   const route = useRoute();
@@ -17,10 +26,3 @@
       .then(() => router.push({name: 'Index'}))
   }
 </script>
-<template>
-  <form @submit.prevent="editData">
-    <a class="idEdit">ID: {{ id }}</a>
-    <input v-model="editMessage" required placeholder="message">
-    <button class="button is-warning">Edit</button>
-  </form>
-</template>

@@ -1,7 +1,15 @@
+<template>
+  <form @submit.prevent="sendData">
+    <input v-model="newTodo" required placeholder="message">
+    <Button size="small" color="color1">Add</Button>
+  </form>
+</template>
 <script setup>
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import axios from 'axios';
+
+  import Button from './buttonComponent.vue'
 
   const router = useRouter();
   const link = 'https://66aba96d636a4840d7cb82a3.mockapi.io/'
@@ -15,9 +23,3 @@
       .then(() => router.push({name: 'Index'}))
   }
 </script>
-<template>
-  <form @submit.prevent="sendData">
-    <input v-model="newTodo" required placeholder="message">
-    <button class="button is-warning">Add</button>
-  </form>
-</template>
