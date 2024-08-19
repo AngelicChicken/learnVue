@@ -21,7 +21,7 @@
   
   async function editData(){
     let message =  `${editMessage.value}`
-    axios
+    await axios
       .put(`${link}activity/${id}`, {message})
       .then(() => router.push({name: 'Index'}))
   }

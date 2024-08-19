@@ -27,7 +27,6 @@
     </table>
 </template>
 <script setup>
-    import {getCurrentInstance} from 'vue'
     import {useRouter} from 'vue-router'
     import axios from 'axios';
 
@@ -50,11 +49,6 @@
             required: false
         }
     })
-
-    const methodThatForcesUpdate = () => {
-        const instance = getCurrentInstance()
-        instance.proxy.forceUpdate();
-    }
 
     async function deleteData(id){
     await axios

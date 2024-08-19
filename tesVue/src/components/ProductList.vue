@@ -20,7 +20,7 @@
   const todoData = ref([])
   async function fetchData(){
     todoData.value = null
-    axios 
+    await axios 
       .get(`${link}activity`)
       .then((response)=> {todoData.value = response.data})
   }
