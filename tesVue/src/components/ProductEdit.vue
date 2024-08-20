@@ -2,11 +2,11 @@
   <form @submit.prevent="editData">
     <a class="idEdit">ID: {{ id }}</a>
     <input v-model="editMessage" required placeholder="message">
-    <Button size="small" color="color1">Edit</Button>
+    <Button size="medium" color="color1">Edit</Button>
   </form>
 </template>
 <script setup>
-  import {ref, onMounted, watch} from 'vue'
+  import {ref} from 'vue'
   import { useRouter, useRoute } from 'vue-router'
   import axios from 'axios';
 

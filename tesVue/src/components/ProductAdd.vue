@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="sendData">
     <input v-model="newTodo" required placeholder="message">
-    <Button size="small" color="color1">Add</Button>
+    <Button size="medium" color="color1">Add</Button>
   </form>
 </template>
 <script setup>
